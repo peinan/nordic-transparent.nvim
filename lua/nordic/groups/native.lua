@@ -140,7 +140,7 @@ function M.get_groups()
     G.TreeFolderName = { fg = C.blue1 }
     G.TreeWinSeparator = { link = 'WinSeparator' }
 
-    G.Comment = { fg = C.comment, italic = O.italic_comments } -- any comment
+    G.Comment = { fg = C.gray5, italic = O.italic_comments } -- any comment
     G.ColorColumn = { bg = C.bg_visual } -- used for the columns set with 'colorcolumn'
     G.Conceal = { fg = C.gray3 } -- placeholder characters substituted for concealed text (see 'conceallevel')
     G.Cursor = { fg = C.black0, bg = C.fg } -- character under the cursor
@@ -148,7 +148,7 @@ function M.get_groups()
     G.CursorIM = { fg = C.black0 } -- like Cursor, but used when in IME mode |CursorIM|
     G.CursorColumn = { bg = C.bg_visual, bold = O.cursorline.bold } -- Screen-column at the cursor, when 'cursorcolumn' is set.
     G.CursorLine = { bg = C.bg_visual, bold = O.cursorline.bold } -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
-    G.CursorLineNr = { fg = C.gray5, bold = O.cursorline.bold_number } -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    G.CursorLineNr = { bg = C.none, fg = C.gray5, bold = O.cursorline.bold_number } -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
     G.CursorLineSign = {}
     G.Directory = { fg = C.blue1 } -- directory names (and other special names in listings)
     G.EndOfBuffer = { fg = C.fg_sidebar } -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
@@ -156,17 +156,18 @@ function M.get_groups()
     -- TermCursorNC= { } -- cursor in an unfocused terminal
     G.ErrorMsg = { fg = C.error } -- error messages on the command line
     G.VertSplit = { fg = C.border_fg } -- the column separating vertically split windows
-    G.WinSeparator = { fg = C.border_fg, bg = C.border_bg } -- the column separating vertically split windows
+    G.WinSeparator = { fg = C.border_fg, bg = C.none } -- the column separating vertically split windows
     G.Folded = { fg = C.fg_fold, bg = C.bg_fold } -- line used for closed folds
-    G.FoldColumn = { bg = C.bg_fold, fg = C.fg_fold } -- 'foldcolumn'
-    G.SignColumn = { bg = C.bg_sidebar, fg = C.fg_sidebar } -- column where |signs| are displayed
-    G.SignColumnSB = { bg = C.bg_sidebar, fg = C.fg_sidebar } -- column where |signs| are displayed
+    G.FoldColumn = { bg = C.none, fg = C.fg_fold } -- 'foldcolumn'
+    G.SignColumn = { bg = C.none, fg = C.fg_sidebar } -- column where |signs| are displayed
+    G.SignColumnSB = { bg = C.none, fg = C.fg_sidebar } -- column where |signs| are displayed
+    G.StatusColumn = { bg = C.none } -- status column (line numbers, signs, etc.)
     G.Substitute = { bg = C.red.base, fg = C.bg_dark } -- |:substitute| replacement text highlighting
-    G.LineNr = { fg = C.fg_sidebar } -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    G.LineNr = { bg = C.none, fg = C.gray2 } -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
     G.MatchParen = { underline = true, bold = true, sp = C.white1 } -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
     G.ModeMsg = { fg = C.fg, bold = true } -- 'showmode' message (e.g., "-- INSERT -- ")
-    G.MsgArea = { fg = C.fg } -- Area for messages and cmdline
-    -- MsgSeparator= { } -- Separator for scrolled messages, `msgsep` flag of 'display'
+    G.MsgArea = { bg = C.none, fg = C.fg } -- Area for messages and cmdline
+    G.MsgSeparator = { bg = C.none } -- Separator for scrolled messages, `msgsep` flag of 'display'
     G.MoreMsg = { fg = C.blue1 } -- |more-prompt|
     G.NonText = { fg = C.gray4 } -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
     G.Normal = { fg = C.fg, bg = C.bg } -- normal text
@@ -189,19 +190,19 @@ function M.get_groups()
     G.SpellCap = { sp = C.warning, undercurl = true } -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     G.SpellLocal = { sp = C.info, undercurl = true } -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     G.SpellRare = { sp = C.hint, undercurl = true } -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
-    G.StatusLine = { fg = C.fg_sidebar, bg = C.bg_statusline } -- status line of current window
-    G.StatusLineNC = { fg = C.gray4, bg = C.bg_statusline } -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    G.TabLine = { bg = C.bg_statusline, fg = C.fg } -- tab pages line, not active tab page label
-    G.TabLineFill = { bg = C.black0, fg = C.none } -- tab pages line, where there are no labels
-    G.TabLineSel = { fg = C.fg_bright, bg = C.bg } -- tab pages line, active tab page label
+    G.StatusLine = { fg = C.fg_sidebar, bg = C.none } -- status line of current window
+    G.StatusLineNC = { fg = C.gray4, bg = C.none } -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+    G.TabLine = { bg = C.none, fg = C.fg } -- tab pages line, not active tab page label
+    G.TabLineFill = { bg = C.none, fg = C.none } -- tab pages line, where there are no labels
+    G.TabLineSel = { fg = C.fg_bright, bg = C.none } -- tab pages line, active tab page label
     G.Title = { fg = C.fg_bright, bold = true } -- titles for output from ":set all", ":autocmd" etc.
     G.Visual = { bg = C.bg_visual, bold = O.cursorline.bold } -- Visual mode selection
     G.VisualNOS = { bg = C.bg_visual } -- Visual mode selection when vim is "Not Owning the Selection".
     G.WarningMsg = { fg = C.warning } -- warning messages
     G.Whitespace = { fg = C.gray4 } -- "nbsp", "space", "tab" and "trail" in 'listchars'
     G.WildMenu = { bg = C.bg_visual } -- current match in 'wildmenu' completion
-    G.WinBar = { bg = C.bg_dark, fg = C.gray5 }
-    G.WinBarNC = { bg = C.bg_dark, fg = C.gray4 }
+    G.WinBar = { bg = C.none, fg = C.gray5 }
+    G.WinBarNC = { bg = C.none, fg = C.gray4 }
 
     -- DIFF
 

@@ -26,6 +26,10 @@ local palette = {
     -- From @nightfox.nvim.
     gray5 = '#60728A',
 
+    -- A slightly lighter blue/gray.
+    -- gray6 = '#6F788B',
+    gray6 = '#586175',
+
     -- Dim white.
     -- default fg, has a blue tint.
     white0_normal = '#BBC3D4',
