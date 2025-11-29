@@ -1,4 +1,7 @@
-# 🌒 Nordic
+# 🌒 Nordic Transparent
+
+> [!NOTE]
+> This is a Neovim theme based on [nordic.vim](https://github.com/AlexvZyl/nordic.nvim), with transparency and further customization.
 
 [![Tests](https://github.com/AlexvZyl/nordic.nvim/workflows/Tests/badge.svg)](https://github.com/AlexvZyl/nordic.nvim/actions?workflow=Tests)
 
